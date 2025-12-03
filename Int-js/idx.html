@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .box {
+            width: 500px;
+            height: 400px;
+            background-color: #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #btn,
+        #btn2,
+        #btn3 {
+            width: 100px;
+            height: 40px;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #timer {
+            width: 300px;
+            height: 40px;
+            background-color: aliceblue;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .date-container {
+            position: relative;
+        }
+
+        .date {
+            width: 200px;
+            height: 40px;
+            background-color: #333;
+            border: 1px solid #ccc;
+            color: white;
+            padding-left: 40px;
+            border-radius: 10px;
+        }
+
+        .calendar-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: white;
+            /* Change the icon color to white */
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            display: none;
+            /* Hide the native calendar icon */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+
+<body>
+    <div class="box">
+        <div style="display: flex;">
+            <button id="btn">Start</button>
+            <button id="btn2">Stop</button>
+            <button id="btn3">Reset</button>
+        </div>
+        <h1 id="timer">hey</h1>
+    </div>
+
+    <div class="date-container">
+        <i class="fas fa-calendar-alt calendar-icon"></i>
+        <input type="date" class="date" id="dateInput" />
+    </div>
+
+    <script>
+        let box = document.querySelector(".box");
+        let btnEl = document.getElementById("btn");
+        let btnEl2 = document.getElementById("btn2");
+        let btnEl3 = document.getElementById("btn3");
+        let timerEl = document.getElementById("timer");
+
+        let val = 0;
+        let interval;
+        incrementing = true;
+
+        btnEl.addEventListener("click", () => {
+            clearInterval(interval);
+            interval = setInterval(() => {
+                if (incrementing) {
+                    val += 1;
+                    if (val >= 100) {
+                        incrementing = false;
+                    }
+                } else {
+                    val -= 1;
+                    if (val <= 0) {
+                        incrementing = true;
+                    }
+                    if (val === 0) {
+                        clearInterval(interval);
+                    }
+                }
+                timerEl.textContent = val;
+            }, 100);
+        });
+
+        btnEl2.addEventListener("click", () => {
+            clearInterval(interval);
+        });
+
+        btnEl3.addEventListener("click", () => {
+            clearInterval(interval);
+            val = 0;
+            timerEl.textContent = val;
+        });
+
+        // Open calendar when icon is clicked
+        const calendarIcon = document.querySelector(".calendar-icon");
+        const dateInput = document.getElementById("dateInput");
+
+        calendarIcon.addEventListener("click", () => {
+            dateInput.focus(); // Focuses on the hidden date input
+            dateInput.click(); // Triggers the date picker
+        });
+    </script>
+</body>
+
+</html>

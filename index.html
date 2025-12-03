@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 2em;
+            color: #333;
+            position: relative;
+            /* Important for positioning the pseudo-element */
+            display: inline-block;
+            /* To allow the ::before to size relative to the heading */
+            padding-top: 10px;
+        }
+
+        .title::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 4px;
+            width: 100%;
+            background-color: #007BFF;
+            border-radius: 2px;
+        }
+
+        .content {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 20px;
+            position: relative;
+            /* Important for positioning the pseudo-element */
+            padding-bottom: 10px;
+            /* To allow the ::after to size relative to the content */
+            display: inline-block;
+            /* To allow the ::after to size relative to the content */
+        }
+
+        .content::after {
+            content: " - This is a pseudo-element";
+            color: #888;
+            font-style: italic;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">Welcome to My Page</h1>
+        <p>This is a simple HTML document with a container.</p>
+        <p class="content">Feel free to add more content here!</p>
+    </div>
+
+    <script>
+        // document.getElementsByClassName('container').addEventListener('click', function (e) {
+        //     if (e.target.classList.contains('title')) {
+        //         console.log('Button clicked:', e.target.textContent);
+        //     }
+        // });
+        const container = document.querySelector('.container');
+        console.log(container);
+        const title = document.querySelector('.title');
+        console.log(title);
+        title.addEventListener('click', function (e) {
+            title.textContent = 'Button Clicked';
+            console.log('Button clicked:', e.target.textContent);
+            title.style.color = 'red';
+            title.style.border = '1px solid red';
+            title.style.backGroundColor = 'blue';
+
+
+        });
+
+    </script>
+</body>
+
+</html>
