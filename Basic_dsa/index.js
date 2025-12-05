@@ -52,7 +52,6 @@ function reverseNumber(num) {
 
 // console.log(reverseNumber("123"));
 
-
 /* Q.4: Prime number*/
 function isPrime(num) {
     if (num <= 1) {
@@ -70,7 +69,9 @@ function isPrime(num) {
 
 /* Q.6: Fibonacci series*/
 function fibonacci(n) {
-    let a = 0,b = 1,c;
+    let a = 0,
+        b = 1,
+        c;
     for (let i = 0; i < n; i++) {
         c = a + b;
         a = b;
@@ -79,7 +80,7 @@ function fibonacci(n) {
     return a;
 }
 
-console.log(fibonacci(15));
+// console.log(fibonacci(15));
 
 /* Q.7: Palindrome number*/
 function isPalindrome(num) {
@@ -108,3 +109,56 @@ function isArmstrong(num) {
 }
 
 // console.log(isArmstrong(153));
+
+const obj1 = {
+    name: "John",
+    regularFunc: function () {
+        console.log(this.name); // 'John'
+    },
+    arrowFunc: () => {
+        console.log(this.name); // undefined (this refers to parent scope)
+    },
+};
+
+// obj.regularFunc();
+// obj.arrowFunc();
+
+const obj = {
+    name: "A",
+    address: {
+        city: "Hyderabad"
+    }
+};
+
+const copyObj = { ...obj };
+// copyObj.address.city = "Mumbai";
+
+// console.log("obj", obj);
+// console.log("copyObj",copyObj);
+
+const deepCopy = JSON.parse(JSON.stringify(obj))
+deepCopy.address.city = "Mumbai";
+// console.log("obj", obj);
+// console.log("deepCopy", deepCopy);
+
+const structureCln = structuredClone(obj)
+structureCln.address.city = "Hyd"
+// console.log("obj",obj)
+// console.assert(obj === structureCln)
+
+
+// Rest with other parameters
+function greet(greeting, ...names) {
+    console.log(`${greeting} ${names.join(' and ')}`);
+}
+
+// greet('Hello', 'Alice', 'Bob',"ismail","Rdk"); // 'Hello Alice and Bob'
+
+// ✅ PURE - No side effects
+function calculateDiscount(price, discountPercent) {
+    return price * (1-discountPercent / 100);
+}
+
+const originalPrice = 100;
+console.log(calculateDiscount(originalPrice, 10)); // 90
+console.log(originalPrice); // 100 (unchanged)

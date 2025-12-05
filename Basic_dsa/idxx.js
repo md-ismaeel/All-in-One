@@ -26,3 +26,4 @@ console.log("obj", obj);
 console.log("deep", deep);
 
 // console.log(window.Object);
+

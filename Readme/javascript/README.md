@@ -2,21 +2,17 @@
 
 A comprehensive guide to JavaScript interview questions organized by difficulty level, from basic to advanced concepts.
 
----
-
 ## 📚 Table of Contents
 
 - [Basic Level Questions](#basic-level-questions)
 - [Moderate Level Questions](#moderate-level-questions)
 - [Advanced Level Questions](#advanced-level-questions)
 
----
-
 ## Basic Level Questions
 
 ### 1. What is JavaScript?
 
-JavaScript is a high-level, interpreted programming language that runs in browsers and server environments (Node.js). It's dynamically typed, supports object-oriented and functional programming paradigms, and is primarily used for web development to create interactive user interfaces and handle client-side logic.
+JavaScript is a high-level, interpreted programming language that runs in browsers and server environments (Node.js). It's dynamically typed, supports object-oriented and functional programming paradigms, and is primarily used for web development to create interactive user interfaces and handle client-side logic.and update web pages without reloading. In browsers, JavaScript is executed by JavaScript engines such as V8 (Chrome), SpiderMonkey (Firefox), and JavaScriptCore (Safari).
 
 ### 2. What are the different data types in JavaScript?
 
@@ -38,19 +34,21 @@ JavaScript has 8 data types:
 
 ### 3. What is the difference between let, const, and var?
 
-- **var**: Function-scoped, hoisted, can be redeclared
-- **let**: Block-scoped, hoisted but not initialized, can be reassigned
-- **const**: Block-scoped, hoisted but not initialized, cannot be reassigned
+let, const, and var are three different keywords used to declare variables in JavaScript.
+
+- **var**: old way to declare variables, it has function and global scope
+- **let**: new way to declare variables, it has block scope and can be re-assignable
+- **const**: new way to declare variables, it has block scope and cannot be re-assignable
 
 ```
 var a = 1; // Function scoped
-let b = 2; // Block scoped, reassignable
+let b = 2; // Block scoped, re-assignable
 const c = 3; // Block scoped, constant
 ```
 
 ### 4. What are template literals and how do you use them?
 
-Template literals are strings enclosed in backticks (`) that allow string interpolation and multi-line strings using the `${expression}` syntax.
+Template literals are strings enclosed in backticks (` that allow string interpolation and multi-line strings using the `${expression}`) syntax.
 
 ```
 const name = 'John';
@@ -324,8 +322,6 @@ return str.charAt(0).toUpperCase() + str.slice(1);
 
 console.log(capitalize('hello')); // 'Hello'
 ```
-
----
 
 ## Moderate Level Questions
 
@@ -638,8 +634,6 @@ console.error('Fetch failed:', error);
 }
 }
 ```
-
----
 
 ## Advanced Level Questions
 
@@ -1170,8 +1164,6 @@ console.log('email' in obj); // false
 // Works with inherited properties
 console.log('toString' in obj); // true (inherited from Object)
 ```
-
----
 
 ## 📌 Summary
 

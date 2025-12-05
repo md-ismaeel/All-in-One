@@ -2,37 +2,37 @@
 
 Comprehensive guide to 50+ React interview questions organized by difficulty level with detailed explanations, code examples, and best practices.
 
----
-
 ## Table of Contents
+
 1. [Basic Level Questions](#basic-level-questions)
 2. [Moderate Level Questions](#moderate-level-questions)
 3. [Advanced Level Questions](#advanced-level-questions)
 4. [Performance & Optimization Questions](#performance--optimization-questions)
 5. [Testing & Best Practices](#testing--best-practices)
 
----
-
 ## Basic Level Questions
 
 ### 1. What is React and how does it work?
 
 **Answer:**
-React is a JavaScript library for building user interfaces using reusable components. It uses a declarative approach where you describe what the UI should look like, and React handles updating the DOM efficiently.
+
+React is an open-source JavaScript library used for building user interfaces, mainly for single-page applications. It is developed and maintained by Facebook. React helps developers create fast, dynamic, and interactive web applications using reusable components and a Virtual DOM for efficient rendering.
 
 **How it works:**
+
 - React creates a Virtual DOM representation of the actual DOM
 - When state changes, React re-renders components and updates the Virtual DOM
 - React compares (diffs) the new Virtual DOM with the previous one
 - Only the changed elements are updated in the actual DOM
 
 **Example:**
+
 ```
 import React, { useState } from 'react';
 
 function Counter() {
   const [count, setCount] = useState(0);
-  
+
   return (
     <div>
       <p>Count: {count}</p>
@@ -44,21 +44,24 @@ function Counter() {
 export default Counter;
 ```
 
----
+**What is a Virtual DOM?**
+The Virtual DOM is an in-memory representation of the actual DOM (Document Object Model)
+that React uses to optimize updates and minimize direct DOM manipulation.
 
 ### 2. What are the differences between functional and class components?
 
 **Answer:**
 
-| Aspect | Functional | Class |
-|--------|-----------|-------|
-| **Syntax** | Regular JS functions | ES6 class extending React.Component |
-| **State** | Use useState hook | this.state |
-| **Lifecycle** | useEffect hook | componentDidMount, componentDidUpdate, etc. |
-| **Performance** | Slightly faster | Slightly slower |
-| **Modern Preference** | Recommended (Hooks era) | Older approach |
+| Aspect                | Functional              | Class                                       |
+| --------------------- | ----------------------- | ------------------------------------------- |
+| **Syntax**            | Regular JS functions    | ES6 class extending React.Component         |
+| **State**             | Use useState hook       | this.state                                  |
+| **Lifecycle**         | useEffect hook          | componentDidMount, componentDidUpdate, etc. |
+| **Performance**       | Slightly faster         | Slightly slower                             |
+| **Modern Preference** | Recommended (Hooks era) | Older approach                              |
 
 **Example:**
+
 ```
 // Functional Component
 function Welcome(props) {
@@ -73,33 +76,32 @@ class Welcome extends React.Component {
 }
 ```
 
----
-
 ### 3. What are props and state? How are they different?
 
 **Answer:**
 
 **Props (Properties):**
+
 - Read-only data passed from parent to child
 - Cannot be modified by the child component
 - Used to pass data and callbacks down the component tree
 
 **State:**
-- Mutable data managed within a component
-- Can be changed using setState or hooks
-- Used to manage dynamic data that affects rendering
 
-| Feature | Props | State |
-|---------|-------|-------|
-| **Passed from** | Parent to Child | Within component |
-| **Mutable** | No | Yes |
-| **Scope** | Passed down | Local to component |
+- State in React is a built-in object that stores dynamic data for a component. It represents information that can change over time, like user input, API data, or UI updates. When the state changes, React automatically re-renders the component to update the UI.
+
+| Feature         | Props           | State              |
+| --------------- | --------------- | ------------------ |
+| **Passed from** | Parent to Child | Within component   |
+| **Mutable**     | No              | Yes                |
+| **Scope**       | Passed down     | Local to component |
 
 **Example:**
+
 ```
 function Parent() {
   const [age, setAge] = useState(25);
-  
+
   return <Child name="John" age={age} updateAge={setAge} />;
 }
 
@@ -114,20 +116,20 @@ function Child({ name, age, updateAge }) {
 }
 ```
 
----
-
 ### 4. What is JSX, and why is it used in React?
 
 **Answer:**
 JSX is a syntax extension that allows you to write HTML-like code in JavaScript. It's not valid JavaScript, so it needs to be compiled into regular JavaScript function calls.
 
 **Why use JSX:**
+
 - Makes code more readable and intuitive
 - Looks like HTML, familiar to developers
 - Prevents injection attacks (escapes values)
 - Better error and warning messages
 
 **Example:**
+
 ```
 // JSX
 const element = <h1>Hello, {name}!</h1>;
@@ -144,14 +146,13 @@ const card = (
 );
 ```
 
----
-
 ### 5. How do you create a simple React component?
 
 **Answer:**
 React components can be created as functional or class-based. Functional components are the modern standard.
 
 **Example:**
+
 ```
 // Simple Functional Component
 function Greeting() {
@@ -179,20 +180,20 @@ export default function App() {
 }
 ```
 
----
-
 ### 6. What is the Virtual DOM, and why is it important?
 
 **Answer:**
 The Virtual DOM is an in-memory representation of the actual DOM. React uses it to optimize updates by batching changes and minimizing direct DOM manipulation.
 
 **Why it's important:**
+
 - **Performance**: Direct DOM manipulation is slow; Virtual DOM updates are faster
 - **Batching**: Multiple updates are batched together
 - **Diffing Algorithm**: Only changed elements are updated in the real DOM
 - **Abstraction**: Developers don't need to worry about low-level DOM operations
 
 **Example:**
+
 ```
 function App() {
   const [count, setCount] = useState(0);
@@ -210,20 +211,20 @@ function App() {
 }
 ```
 
----
-
 ### 7. What is the purpose of the key prop in React lists?
 
 **Answer:**
 The `key` prop helps React identify which elements have changed, been added, or removed. It helps maintain component state during list re-renders.
 
 **Why it's important:**
+
 - Helps React match elements across re-renders
 - Preserves component state in lists
 - Improves performance
 - Prevents bugs with form inputs and animations
 
 **Example:**
+
 ```
 // Without key (Bad)
 function TodoList({ todos }) {
@@ -254,14 +255,13 @@ const todos = [
 ];
 ```
 
----
-
 ### 8. How do you handle events in React?
 
 **Answer:**
 React events are similar to DOM events but use camelCase naming convention and pass event objects as parameters.
 
 **Example:**
+
 ```
 function EventDemo() {
   const handleClick = () => {
@@ -289,14 +289,13 @@ function EventDemo() {
 }
 ```
 
----
-
 ### 9. What are default props in React?
 
 **Answer:**
 Default props are default values assigned to props if they are not provided by the parent component.
 
 **Example:**
+
 ```
 // Using defaultProps (Functional Component)
 function Greeting({ name = 'Guest', age = 18 }) {
@@ -326,20 +325,20 @@ class Greeting extends React.Component {
 <Greeting name="John" /> // Uses provided props
 ```
 
----
-
 ### 10. What is conditional rendering in React?
 
 **Answer:**
 Conditional rendering is rendering different content based on specific conditions. It's similar to if/else statements in JavaScript.
 
 **Methods:**
+
 1. If/else statements
 2. Ternary operator
 3. Logical AND (&&)
 4. Switch statements
 
 **Example:**
+
 ```
 function UserStatus({ isLoggedIn, user }) {
   // Method 1: If/else
@@ -376,20 +375,22 @@ function Greeting({ timeOfDay }) {
 }
 ```
 
----
-
 ## Moderate Level Questions
 
 ### 11. What are React Hooks? Can you explain useState and useEffect with examples?
 
-**Answer:**
-Hooks are functions that let you use state and other React features in functional components. They were introduced in React 16.8.
+React Hooks are special functions that let you use state and other React features
+in functional components without writing a class.
 
-**useState:** Allows functional components to have state. Returns an array with current state and a function to update it.
+- useState: A hook that allows functional components to hold and update state.
+  It returns the current state and a function to update it.
 
-**useEffect:** Allows you to perform side effects (data fetching, subscriptions, etc.) in functional components.
+- useEffect: A hook that lets functional components perform side effects,
+  such as fetching data, subscribing to events, or updating the DOM,
+  and run code in response to state or prop changes.
 
 **Example:**
+
 ```
 import { useState, useEffect } from 'react';
 
@@ -430,25 +431,26 @@ function UserProfile({ userId }) {
 }
 ```
 
----
-
 ### 12. What is the difference between controlled and uncontrolled components?
 
 **Answer:**
 
 **Controlled Components:**
+
 - Form data is handled by React state
 - Value is set by the component's state
 - More predictable and easier to manipulate
 - React is the "single source of truth"
 
 **Uncontrolled Components:**
+
 - Form data is handled by the DOM
 - Access value using refs
 - Works like traditional HTML form elements
 - Less React-like but simpler in some cases
 
 **Example:**
+
 ```
 // Controlled Component
 function ControlledForm() {
@@ -465,8 +467,8 @@ function ControlledForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input 
-        type="email" 
+      <input
+        type="email"
         value={email}
         onChange={handleChange}
       />
@@ -493,20 +495,20 @@ function UncontrolledForm() {
 }
 ```
 
----
-
 ### 13. What is React Router, and how does client-side routing work?
 
 **Answer:**
 React Router is a popular library for handling navigation and routing in single-page applications (SPAs). Client-side routing updates the UI without full page reloads.
 
 **How it works:**
+
 - Intercepts URL changes
 - Updates browser history
 - Renders appropriate components based on URL
 - No server requests for route changes
 
 **Example:**
+
 ```
 import { BrowserRouter, Routes, Route, Link, useParams } from 'react-router-dom';
 
@@ -518,7 +520,7 @@ function App() {
         <Link to="/about">About</Link>
         <Link to="/contact">Contact</Link>
       </nav>
-      
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -536,14 +538,13 @@ function UserDetail() {
 }
 ```
 
----
-
 ### 14. What is the Context API, and when should you use it instead of Redux?
 
 **Answer:**
 Context API provides a way to pass data through component trees without manually passing props at every level.
 
 **When to use Context API:**
+
 - Simple state management
 - Avoiding prop drilling
 - Theming (dark/light mode)
@@ -551,6 +552,7 @@ Context API provides a way to pass data through component trees without manually
 - Small to medium applications
 
 **When to use Redux:**
+
 - Large, complex applications
 - Multiple independent state slices
 - Need for time-travel debugging
@@ -558,6 +560,7 @@ Context API provides a way to pass data through component trees without manually
 - Team already familiar with Redux
 
 **Example:**
+
 ```
 import { createContext, useContext, useState } from 'react';
 
@@ -604,20 +607,20 @@ function Header() {
 }
 ```
 
----
-
 ### 15. What is prop drilling, and how can it be avoided?
 
 **Answer:**
 Prop drilling is passing props through many levels of components even if intermediate components don't use them. It makes code harder to maintain and track data flow.
 
 **Solutions:**
+
 1. Context API
 2. State management library (Redux)
 3. Component composition
 4. Custom hooks
 
 **Example:**
+
 ```
 // Problem: Prop Drilling
 function App() {
@@ -663,20 +666,20 @@ function Level3() {
 }
 ```
 
----
-
 ### 16. What is React.memo, and how does it help with performance optimization?
 
 **Answer:**
 React.memo is a higher-order component that memoizes a component. It prevents unnecessary re-renders if props haven't changed.
 
 **When to use:**
+
 - Pure functional components
 - Expensive re-render operations
 - Props don't change frequently
 - Component receives same props repeatedly
 
 **Example:**
+
 ```
 // Without React.memo
 function UserCard({ name, email }) {
@@ -702,7 +705,7 @@ const UserCardMemo = React.memo(
 
 function App() {
   const [count, setCount] = useState(0);
-  
+
   return (
     <div>
       <UserCardMemo name="John" email="john@example.com" />
@@ -715,24 +718,25 @@ function App() {
 // UserCard only renders once; count changes don't trigger re-render
 ```
 
----
-
 ### 17. What is the difference between useMemo and useCallback?
 
 **Answer:**
 
 **useMemo:**
+
 - Memoizes a computed value
 - Prevents expensive computations on every render
 - Returns the memoized value
 
 **useCallback:**
+
 - Memoizes a function
 - Prevents function recreation on every render
 - Returns the memoized function
 - Useful for optimizing child components that use the function as a prop
 
 **Example:**
+
 ```
 function App() {
   const [count, setCount] = useState(0);
@@ -753,8 +757,8 @@ function App() {
     <div>
       <p>Count: {count}</p>
       <p>Expensive Value: {expensiveValue}</p>
-      <input 
-        value={text} 
+      <input
+        value={text}
         onChange={(e) => setText(e.target.value)}
       />
       <Child callback={memoizedCallback} />
@@ -771,14 +775,13 @@ function Child({ callback }) {
 export default React.memo(App);
 ```
 
----
-
 ### 18. What is a Higher-Order Component (HOC), and how is it used?
 
 **Answer:**
 A Higher-Order Component is a function that takes a component and returns a new component with additional functionality. It's an advanced pattern for code reuse.
 
 **Common use cases:**
+
 - Props manipulation
 - State abstraction
 - Code reuse across components
@@ -786,6 +789,7 @@ A Higher-Order Component is a function that takes a component and returns a new 
 - Theme provision
 
 **Example:**
+
 ```
 // HOC that adds theme
 function withTheme(Component) {
@@ -797,9 +801,9 @@ function withTheme(Component) {
     };
 
     return (
-      <Component 
-        {...props} 
-        theme={theme} 
+      <Component
+        {...props}
+        theme={theme}
         toggleTheme={toggleTheme}
       />
     );
@@ -822,20 +826,20 @@ const ThemedMyComponent = withTheme(MyComponent);
 export default ThemedMyComponent;
 ```
 
----
-
 ### 19. How does React handle forms, and what are controlled inputs?
 
 **Answer:**
 React handles forms differently from vanilla HTML. Controlled inputs keep the input value in React state, making React the source of truth.
 
 **Key differences:**
+
 - Input value is controlled by state
 - onChange handler updates state
 - Form submission is handled by React
 - More predictable and easier to validate
 
 **Example:**
+
 ```
 function LoginForm() {
   const [formData, setFormData] = useState({
@@ -910,8 +914,6 @@ function LoginForm() {
 }
 ```
 
----
-
 ## Advanced Level Questions
 
 ### 20. How does React handle re-renders, and how can you optimize unnecessary re-renders?
@@ -920,6 +922,7 @@ function LoginForm() {
 React re-renders a component when its state or props change. Unnecessary re-renders can impact performance and should be optimized.
 
 **Optimization techniques:**
+
 1. React.memo for functional components
 2. useMemo for expensive computations
 3. useCallback for function props
@@ -929,6 +932,7 @@ React re-renders a component when its state or props change. Unnecessary re-rend
 7. Lifting state appropriately
 
 **Example:**
+
 ```
 function Parent() {
   const [count, setCount] = useState(0);
@@ -943,7 +947,7 @@ function Parent() {
     <div>
       <Child onIncrement={handleClick} />
       <p>Count: {count}</p>
-      <input 
+      <input
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
@@ -972,14 +976,13 @@ function ExpensiveComponent({ items }) {
 }
 ```
 
----
-
 ### 21. What is reconciliation in React?
 
 **Answer:**
 Reconciliation is the algorithm React uses to determine what has changed and needs to be updated. When a component's state changes, React needs to figure out which parts of the DOM to update.
 
 **Process:**
+
 1. Render the new JSX
 2. Create new Virtual DOM
 3. Compare with previous Virtual DOM (diffing)
@@ -987,11 +990,13 @@ Reconciliation is the algorithm React uses to determine what has changed and nee
 5. Update actual DOM with only the changed parts
 
 **Key principles:**
+
 - Different element types produce different trees
 - Keys help identify elements across re-renders
 - React batches updates for performance
 
 **Example:**
+
 ```
 function List({ items }) {
   // React needs to reconcile items when the array changes
@@ -1012,24 +1017,25 @@ function List({ items }) {
 // 3. Only one DOM insertion, not three re-renders
 ```
 
----
-
 ### 22. How does React's diffing algorithm work?
 
 **Answer:**
 React's diffing algorithm compares the new Virtual DOM with the previous one to determine the minimal changes needed for the actual DOM.
 
 **Algorithm principles:**
+
 1. **Element type comparison**: Different types create different trees
 2. **DOM element attributes**: Changed attributes are updated
 3. **Children comparison**: Recursively compares child elements
 4. **Key-based identification**: Keys help match elements across renders
 
 **Complexity:**
+
 - Without optimization: O(n³)
 - React's algorithm: O(n) using heuristics
 
 **Example:**
+
 ```
 // Case 1: Element type changed (full tree rebuild)
 // Before: <div><Counter /></div>
@@ -1058,20 +1064,20 @@ function TodoList({ todos }) {
 // With keys: Items are reordered without recreation
 ```
 
----
-
 ### 23. What is React.lazy and Suspense? How does lazy loading work in React?
 
 **Answer:**
 React.lazy enables code splitting by lazy-loading components. Suspense allows you to show a fallback while the component is loading.
 
 **Benefits:**
+
 - Smaller initial bundle size
 - Faster initial page load
 - Components loaded on demand
 - Better performance for large apps
 
 **Example:**
+
 ```
 import { lazy, Suspense } from 'react';
 
@@ -1115,26 +1121,27 @@ function AppRouter() {
 }
 ```
 
----
-
 ### 24. What are error boundaries, and how do they work?
 
 **Answer:**
 Error boundaries are React components that catch JavaScript errors in child components during rendering, lifecycle methods, or constructors. They prevent the entire app from crashing.
 
 **What error boundaries catch:**
+
 - Rendering errors
 - Lifecycle method errors
 - Constructor errors
 - Errors in child components
 
 **What they don't catch:**
+
 - Event handler errors (use try/catch)
 - Asynchronous code
 - Server-side rendering
 - Errors in the error boundary itself
 
 **Example:**
+
 ```
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -1186,14 +1193,13 @@ function RiskyComponent() {
 }
 ```
 
----
-
 ### 25. How do you handle authentication and protected routes in React?
 
 **Answer:**
 Authentication is handled by verifying user credentials and storing tokens. Protected routes restrict access to authenticated users only.
 
 **Process:**
+
 1. User logs in with credentials
 2. Server returns authentication token
 3. Token is stored (localStorage, sessionStorage, or cookies)
@@ -1201,6 +1207,7 @@ Authentication is handled by verifying user credentials and storing tokens. Prot
 5. Protected routes check authentication before rendering
 
 **Example:**
+
 ```
 import { useState, useContext, createContext, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -1266,13 +1273,13 @@ function Login() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input 
-        type="email" 
+      <input
+        type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <input 
-        type="password" 
+      <input
+        type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
@@ -1288,13 +1295,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route 
-            path="/dashboard" 
+          <Route
+            path="/dashboard"
             element={
               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
-            } 
+            }
           />
         </Routes>
       </BrowserRouter>
@@ -1303,8 +1310,6 @@ function App() {
 }
 ```
 
----
-
 ### 26. What are render props, and how are they different from HOCs?
 
 **Answer:**
@@ -1312,14 +1317,15 @@ Render props is a pattern where a component takes a function as a prop that retu
 
 **Render Props vs HOC:**
 
-| Feature | Render Props | HOC |
-|---------|--------------|-----|
-| **Syntax** | Function prop | Wrapping function |
-| **Readability** | Clear data flow | Less obvious |
-| **Nesting** | Can lead to nesting | Wrapper hell |
-| **Naming** | Requires component wrapping | Can cause naming collisions |
+| Feature         | Render Props                | HOC                         |
+| --------------- | --------------------------- | --------------------------- |
+| **Syntax**      | Function prop               | Wrapping function           |
+| **Readability** | Clear data flow             | Less obvious                |
+| **Nesting**     | Can lead to nesting         | Wrapper hell                |
+| **Naming**      | Requires component wrapping | Can cause naming collisions |
 
 **Example:**
+
 ```
 // Render Props Pattern
 class MouseTracker extends React.Component {
@@ -1365,20 +1371,19 @@ class DataFetcher extends React.Component {
 }
 
 // Usage
-<DataFetcher 
+<DataFetcher
   render={({ data, loading }) => (
     loading ? <p>Loading...</p> : <p>{data}</p>
   )}
 />
 ```
 
----
-
 ### 27. How does server-side rendering (SSR) differ from client-side rendering (CSR) in React?
 
 **Answer:**
 
 **Client-Side Rendering (CSR):**
+
 - React app runs in the browser
 - Initial HTML is mostly empty
 - JavaScript downloads and executes
@@ -1386,21 +1391,23 @@ class DataFetcher extends React.Component {
 - Faster subsequent navigation
 
 **Server-Side Rendering (SSR):**
+
 - React renders on the server
 - Full HTML sent to browser
 - Browser receives complete page
 - Initial page load is faster
 - Better SEO
 
-| Aspect | CSR | SSR |
-|--------|-----|-----|
-| **Initial Load** | Slower | Faster |
-| **SEO** | Worse | Better |
-| **JS Payload** | Large | Can be smaller |
-| **Interactivity** | Slower (after JS loads) | Fast |
-| **Server Load** | None | High |
+| Aspect            | CSR                     | SSR            |
+| ----------------- | ----------------------- | -------------- |
+| **Initial Load**  | Slower                  | Faster         |
+| **SEO**           | Worse                   | Better         |
+| **JS Payload**    | Large                   | Can be smaller |
+| **Interactivity** | Slower (after JS loads) | Fast           |
+| **Server Load**   | None                    | High           |
 
 **Example:**
+
 ```
 // Client-Side Rendering (Standard React/Create React App)
 // index.jsx
@@ -1427,14 +1434,12 @@ export async function getStaticProps() {
   const res = await fetch('https://api.example.com/data');
   const data = await res.json();
 
-  return { 
+  return {
     props: { data },
     revalidate: 60 // Revalidate every 60 seconds
   };
 }
 ```
-
----
 
 ### 28. What are React Fiber and Concurrent Mode?
 
@@ -1442,18 +1447,21 @@ export async function getStaticProps() {
 React Fiber is the reconciliation engine that powers React. Concurrent Mode allows React to pause, stop, and resume work to avoid blocking the main thread.
 
 **React Fiber:**
+
 - Internal architecture for rendering
 - Enables incremental rendering
 - Improves performance and responsiveness
 - Introduced in React 16
 
 **Concurrent Mode (Experimental):**
+
 - Allows rendering to be interruptible
 - Prioritizes urgent updates
 - Improves responsiveness for large apps
 - Uses time slicing to split work into chunks
 
 **Example:**
+
 ```
 import { startTransition, useTransition, useDeferredValue } from 'react';
 
@@ -1464,7 +1472,7 @@ function SearchResults({ query }) {
 
   const handleSearch = (e) => {
     const value = e.target.value;
-    
+
     // Mark this state update as non-urgent
     startTransition(() => {
       setResults(performExpensiveSearch(value));
@@ -1487,7 +1495,7 @@ function SearchResults({ query }) {
 // useDeferredValue: Defer expensive computations
 function DeferredSearch({ query }) {
   const deferredQuery = useDeferredValue(query);
-  
+
   // deferredQuery is updated after more urgent updates
   const results = useMemo(() => {
     return expensiveSearch(deferredQuery);
@@ -1497,14 +1505,13 @@ function DeferredSearch({ query }) {
 }
 ```
 
----
-
 ### 29. How do you test React components? What are the commonly used testing libraries?
 
 **Answer:**
 Testing React components involves unit tests, integration tests, and end-to-end tests. Common libraries include Jest, React Testing Library, and Enzyme.
 
 **Common testing libraries:**
+
 - **Jest**: Test runner and assertion library
 - **React Testing Library**: Encourages testing user behavior
 - **Enzyme**: Component testing utilities
@@ -1512,6 +1519,7 @@ Testing React components involves unit tests, integration tests, and end-to-end 
 - **Playwright**: Cross-browser testing
 
 **Example:**
+
 ```
 // Component to test
 function Counter() {
@@ -1538,29 +1546,29 @@ describe('Counter Component', () => {
   test('increments count when button is clicked', () => {
     render(<Counter />);
     const button = screen.getByText('Increment');
-    
+
     fireEvent.click(button);
-    
+
     expect(screen.getByText('Count: 1')).toBeInTheDocument();
   });
 
   test('decrements count when decrement button is clicked', () => {
     render(<Counter />);
     const decrementBtn = screen.getByText('Decrement');
-    
+
     fireEvent.click(decrementBtn);
-    
+
     expect(screen.getByText('Count: -1')).toBeInTheDocument();
   });
 
   test('handles multiple clicks', () => {
     render(<Counter />);
     const incrementBtn = screen.getByText('Increment');
-    
+
     fireEvent.click(incrementBtn);
     fireEvent.click(incrementBtn);
     fireEvent.click(incrementBtn);
-    
+
     expect(screen.getByText('Count: 3')).toBeInTheDocument();
   });
 });
@@ -1580,15 +1588,13 @@ function UserProfile({ userId }) {
 
 test('loads and displays user data', async () => {
   render(<UserProfile userId={1} />);
-  
+
   expect(screen.getByText('Loading...')).toBeInTheDocument();
-  
+
   const userName = await screen.findByText('John');
   expect(userName).toBeInTheDocument();
 });
 ```
-
----
 
 ## Performance & Optimization Questions
 
@@ -1598,22 +1604,26 @@ test('loads and displays user data', async () => {
 useMemo is a React hook that memoizes a computed value and only recalculates it when dependencies change. It's useful for optimizing expensive computations.
 
 **When to use:**
+
 - Heavy calculations (sorting, filtering, complex transformations)
 - Preventing unnecessary recalculations
 - Passing computed values to child components
 - Creating stable references for dependencies
 
 **When NOT to use:**
+
 - Simple calculations (just return the value)
 - Every computation (premature optimization)
 - Replacing proper component structure
 
 **Performance Impact:**
+
 - Saves computation time
 - Adds memory overhead
 - Only beneficial for expensive operations (>1ms)
 
 **Example:**
+
 ```
 import { useMemo, useState } from 'react';
 
@@ -1657,18 +1667,18 @@ function DataProcessorOptimized({ items, searchTerm }) {
 function Analytics({ data }) {
   const statistics = useMemo(() => {
     console.log('Computing statistics...');
-    
+
     const total = data.reduce((sum, item) => sum + item.value, 0);
     const average = total / data.length;
     const max = Math.max(...data.map(d => d.value));
     const min = Math.min(...data.map(d => d.value));
-    
+
     // Simulate expensive operation
     let processedData = data;
     for (let i = 0; i < 1000000; i++) {
       processedData = processedData.map(d => d);
     }
-    
+
     return { total, average, max, min, processedData };
   }, [data]);
 
@@ -1685,16 +1695,16 @@ function Analytics({ data }) {
 // With multiple dependencies
 function FilterAndSort({ items, sortBy, filterBy }) {
   const processed = useMemo(() => {
-    let result = items.filter(item => 
+    let result = items.filter(item =>
       filterBy ? item.type === filterBy : true
     );
-    
+
     if (sortBy === 'name') {
       result = result.sort((a, b) => a.name.localeCompare(b.name));
     } else if (sortBy === 'price') {
       result = result.sort((a, b) => a.price - b.price);
     }
-    
+
     return result;
   }, [items, sortBy, filterBy]);
 
@@ -1702,25 +1712,26 @@ function FilterAndSort({ items, sortBy, filterBy }) {
 }
 ```
 
----
-
 ### 31. Explain useCallback in detail with practical examples.
 
 **Answer:**
 useCallback memoizes a function and returns the same function reference if dependencies haven't changed. It's useful for optimizing child components that depend on function props.
 
 **When to use:**
+
 - Passing functions to memoized child components
 - Functions used in dependency arrays (useEffect, useMemo)
 - Preventing unnecessary child re-renders
 - Creating stable function references
 
 **When NOT to use:**
+
 - Callback defined once and never passed as prop
 - Simple callbacks (premature optimization)
 - Functions without dependencies
 
 **Example:**
+
 ```
 import { useCallback, useState, memo } from 'react';
 
@@ -1815,7 +1826,7 @@ function SearchComponent({ apiUrl }) {
 
   return (
     <div>
-      <input 
+      <input
         value={query}
         onChange={(e) => {
           setQuery(e.target.value);
@@ -1830,31 +1841,33 @@ function SearchComponent({ apiUrl }) {
 }
 ```
 
----
-
 ### 32. What is React.memo and how does it optimize performance?
 
 **Answer:**
 React.memo is a higher-order component that memoizes a component and prevents re-renders if props haven't changed. It performs shallow comparison of props by default.
 
 **Benefits:**
+
 - Prevents unnecessary re-renders
 - Improves performance for expensive components
 - Easy to implement
 - Works with any component
 
 **Drawbacks:**
+
 - Shallow comparison only (doesn't work with complex nested objects)
 - Adds extra comparison overhead (minimal but real)
 - Can hide performance issues if used incorrectly
 
 **When to use:**
+
 - Pure functional components (same props = same output)
 - Expensive components (calculations, animations)
 - Components that receive same props frequently
 - Large lists of components
 
 **Example:**
+
 ```
 import { memo, useState, useCallback } from 'react';
 
@@ -1872,7 +1885,7 @@ const UserCard = memo(function UserCard({ name, email }) {
 // Usage in parent
 function App() {
   const [count, setCount] = useState(0);
-  
+
   return (
     <div>
       {/* UserCard only re-renders if name or email props change */}
@@ -1918,7 +1931,7 @@ function ListBad() {
     <div>
       {products.map(product => (
         // New product object created each render - memo doesn't help!
-        <ProductItem 
+        <ProductItem
           key={product.id}
           product={product}
           onSelect={setSelectedId}
@@ -1931,7 +1944,7 @@ function ListBad() {
 // Solution: Memoize dependencies with useMemo and useCallback
 function ListGood() {
   const [selectedId, setSelectedId] = useState(null);
-  
+
   const products = useMemo(() => [
     { id: 1, name: 'Product 1', price: 10 },
     { id: 2, name: 'Product 2', price: 20 },
@@ -1944,7 +1957,7 @@ function ListGood() {
   return (
     <div>
       {products.map(product => (
-        <ProductItem 
+        <ProductItem
           key={product.id}
           product={product}
           onSelect={handleSelect}
@@ -1992,8 +2005,6 @@ function OptimizedList({ items }) {
 }
 ```
 
----
-
 ### 33. What is the relationship between useMemo, useCallback, and React.memo?
 
 **Answer:**
@@ -2001,30 +2012,32 @@ These three tools work together to optimize React performance by preventing unne
 
 **How they work together:**
 
-| Tool | Purpose | Used With |
-|------|---------|-----------|
-| **React.memo** | Prevent component re-renders | Memoized child components |
-| **useCallback** | Prevent function recreation | Pass to React.memo children |
-| **useMemo** | Prevent value recalculation | Dependency arrays, expensive computations |
+| Tool            | Purpose                      | Used With                                 |
+| --------------- | ---------------------------- | ----------------------------------------- |
+| **React.memo**  | Prevent component re-renders | Memoized child components                 |
+| **useCallback** | Prevent function recreation  | Pass to React.memo children               |
+| **useMemo**     | Prevent value recalculation  | Dependency arrays, expensive computations |
 
 **Optimization Pattern:**
+
 1. Wrap child component with React.memo
 2. Memoize functions with useCallback
 3. Memoize values with useMemo
 4. Pass as props to memoized children
 
 **Example:**
+
 ```
 import { memo, useMemo, useCallback, useState } from 'react';
 
 // Child component optimized with React.memo
 const FilteredList = memo(function FilteredList({ items, onItemClick, filters }) {
   console.log('FilteredList rendered');
-  
+
   return (
     <ul>
       {items.map(item => (
-        <li 
+        <li
           key={item.id}
           onClick={() => onItemClick(item.id)}
           style={{ opacity: filters.includes(item.id) ? 1 : 0.5 }}
@@ -2050,15 +2063,15 @@ function Parent() {
 
   // Filter dependent on searchTerm
   const filteredItems = useMemo(() => {
-    return items.filter(item => 
+    return items.filter(item =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [items, searchTerm]);
 
   // Callback: Use useCallback to keep stable reference
   const handleItemClick = useCallback((id) => {
-    setSelectedIds(prev => 
-      prev.includes(id) 
+    setSelectedIds(prev =>
+      prev.includes(id)
         ? prev.filter(i => i !== id)
         : [...prev, id]
     );
@@ -2066,23 +2079,23 @@ function Parent() {
 
   return (
     <div>
-      <input 
+      <input
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search..."
       />
-      
+
       {/* FilteredList only re-renders if:
           - filteredItems reference changes (searchTerm or items)
           - handleItemClick reference changes (never, because useCallback)
           - selectedIds reference changes (when selection changes)
       */}
-      <FilteredList 
+      <FilteredList
         items={filteredItems}
         onItemClick={handleItemClick}
         filters={selectedIds}
       />
-      
+
       <button onClick={() => setCount(count + 1)}>
         Count: {count}
       </button>
@@ -2095,7 +2108,7 @@ function BadOptimization() {
   // ❌ BAD: Memoizing everything blindly
   const data = useMemo(() => ({ name: 'John' }), []);
   const handler = useCallback(() => console.log('click'), []);
-  
+
   // This component doesn't need optimization
   return <SimpleButton onClick={handler} data={data} />;
 }
@@ -2104,12 +2117,12 @@ function BadOptimization() {
 function GoodOptimization() {
   // ✅ GOOD: Only memoize when needed
   const [count, setCount] = useState(0);
-  
+
   // Only memoize expensive operations
   const expensiveValue = useMemo(() => {
     return complexCalculation(); // Only if this is expensive
   }, []);
-  
+
   // Only memoize callbacks passed to optimized children
   const handleClick = useCallback(() => {
     setCount(count + 1);
@@ -2119,14 +2132,13 @@ function GoodOptimization() {
 }
 ```
 
----
-
 ### 34. How do you identify performance bottlenecks in React applications?
 
 **Answer:**
 Identifying performance issues involves profiling, measuring, and analyzing render patterns.
 
 **Tools:**
+
 - React DevTools Profiler
 - Chrome DevTools Performance tab
 - console.time() / console.timeEnd()
@@ -2135,6 +2147,7 @@ Identifying performance issues involves profiling, measuring, and analyzing rend
 - Web Vitals
 
 **Common bottlenecks:**
+
 - Unnecessary re-renders
 - Large bundle size
 - Expensive computations
@@ -2143,15 +2156,16 @@ Identifying performance issues involves profiling, measuring, and analyzing rend
 - Long tasks blocking main thread
 
 **Example:**
+
 ```
 // Method 1: console.time
 function SlowComponent() {
   console.time('slow-render');
-  
+
   const result = expensiveCalculation();
-  
+
   console.timeEnd('slow-render');
-  
+
   return <div>{result}</div>;
 }
 
@@ -2173,12 +2187,12 @@ function App() {
 // Method 3: Track render count
 function useRenderCount(componentName) {
   const renders = useRef(0);
-  
+
   useEffect(() => {
     renders.current++;
     console.log(`${componentName} rendered ${renders.current} times`);
   });
-  
+
   return renders.current;
 }
 
@@ -2204,7 +2218,7 @@ function WhyDidYouRender() {
     <div>
       <p>{count}</p>
       <p>{text}</p>
-      {/* If this component re-renders when text changes, 
+      {/* If this component re-renders when text changes,
           it's an unnecessary re-render */}
       <CountDisplay count={count} />
     </div>
@@ -2212,14 +2226,13 @@ function WhyDidYouRender() {
 }
 ```
 
----
-
 ### 35. What are best practices for optimizing React applications?
 
 **Answer:**
 Optimization best practices help maintain performance as applications grow.
 
 **Key practices:**
+
 1. Profile before optimizing
 2. Use React DevTools Profiler
 3. Split code with React.lazy and Suspense
@@ -2232,6 +2245,7 @@ Optimization best practices help maintain performance as applications grow.
 10. Monitor Core Web Vitals
 
 **Example:**
+
 ```
 // 1. Code splitting
 import { lazy, Suspense } from 'react';
@@ -2332,8 +2346,6 @@ function FilterSection() {
 }
 ```
 
----
-
 ## Testing & Best Practices
 
 ### 36. What is the best way to structure a React project?
@@ -2386,8 +2398,6 @@ src/
 └── main.jsx
 ```
 
----
-
 ### 37. What are common React anti-patterns to avoid?
 
 **Answer:**
@@ -2395,6 +2405,7 @@ src/
 **Common anti-patterns:**
 
 1. **Mutating state directly**
+
 ```
 // ❌ Bad
 state.count = state.count + 1;
@@ -2404,6 +2415,7 @@ setState(prev => ({ ...prev, count: prev.count + 1 }));
 ```
 
 2. **Using array index as key**
+
 ```
 // ❌ Bad
 {items.map((item, index) => <Item key={index} />)}
@@ -2413,6 +2425,7 @@ setState(prev => ({ ...prev, count: prev.count + 1 }));
 ```
 
 3. **Fetching in render**
+
 ```
 // ❌ Bad
 function Component() {
@@ -2431,6 +2444,7 @@ function Component() {
 ```
 
 4. **Prop drilling too deeply**
+
 ```
 // ❌ Bad - Prop drilling through 5+ levels
 
@@ -2438,6 +2452,7 @@ function Component() {
 ```
 
 5. **Not cleaning up side effects**
+
 ```
 // ❌ Bad
 useEffect(() => {
@@ -2451,13 +2466,12 @@ useEffect(() => {
 }, []);
 ```
 
----
-
 ### 38. How do you prevent memory leaks in React?
 
 **Answer:**
 
 **Common causes of memory leaks:**
+
 - Uncleared timers (setInterval, setTimeout)
 - Unsubscribed event listeners
 - Unaborted API requests
@@ -2490,7 +2504,7 @@ function DataFetcher() {
     fetch('/api/data', { signal: controller.signal })
       .then(r => r.json())
       .catch(e => console.log(e));
-    
+
     return () => controller.abort();
   }, []);
 }
@@ -2504,14 +2518,13 @@ function SubscriptionComponent() {
 }
 ```
 
----
-
 ### 39. What is the useRef hook and when should you use it?
 
 **Answer:**
 useRef returns a mutable ref object that persists across renders and doesn't cause re-renders when updated.
 
 **Use cases:**
+
 - Accessing DOM elements directly
 - Storing mutable values
 - Keeping previous values
@@ -2519,6 +2532,7 @@ useRef returns a mutable ref object that persists across renders and doesn't cau
 - Triggering animations
 
 **Example:**
+
 ```
 // Accessing DOM elements
 function TextInput() {
@@ -2572,19 +2586,19 @@ function Component({ count }) {
 }
 ```
 
----
-
 ### 40. What are custom hooks and how do you create them?
 
 **Answer:**
 Custom hooks are JavaScript functions that use React hooks. They allow you to reuse stateful logic across components.
 
 **Rules for custom hooks:**
+
 - Name must start with "use"
 - Can only call other hooks
 - Can only be called from React components or other hooks
 
 **Example:**
+
 ```
 // Custom hook for fetching data
 function useFetch(url) {
@@ -2703,14 +2717,13 @@ function App() {
 }
 ```
 
----
-
 ### 41. What is the React DevTools and how do you use it?
 
 **Answer:**
 React DevTools is a browser extension that helps debug and profile React applications.
 
 **Features:**
+
 - Inspect component hierarchy
 - View and edit props and state
 - Track component re-renders
@@ -2718,13 +2731,12 @@ React DevTools is a browser extension that helps debug and profile React applica
 - Highlight component updates
 
 **Common use cases:**
+
 - Debugging component state
 - Understanding component relationships
 - Performance profiling
 - Finding why components re-render
 - Inspecting component props
-
----
 
 ### 42. What is code splitting and how does it improve performance?
 
@@ -2732,6 +2744,7 @@ React DevTools is a browser extension that helps debug and profile React applica
 Code splitting breaks your application into smaller chunks loaded on demand, reducing initial bundle size and improving performance.
 
 **Benefits:**
+
 - Smaller initial bundle
 - Faster page load
 - Better caching
@@ -2775,25 +2788,26 @@ async function loadModule() {
 }
 ```
 
----
-
 ### 43. What is the difference between controlled and uncontrolled components (revisited)?
 
 **Answer:**
 This is an important concept worth revisiting with more detail.
 
 **Controlled Components:**
+
 - React state is the single source of truth
 - Every keystroke updates state
 - Value is explicitly set
 - Predictable and easier to test
 
 **Uncontrolled Components:**
+
 - DOM is the source of truth
 - Use ref to access values
 - Works like traditional HTML
 - Less React-y but sometimes simpler
 
 **When to use each:**
+
 - **Controlled**: Forms with validation, dependent fields, multiple inputs
 - **Uncontrolled**: Simp
