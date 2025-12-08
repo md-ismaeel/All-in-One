@@ -724,16 +724,32 @@ function App() {
 
 **useMemo:**
 
-- Memoizes a computed value
-- Prevents expensive computations on every render
-- Returns the memoized value
+- useMemo is a React Hook that memoizes (caches) the result of a computation.
+It only recalculates the value when one of the dependencies changes.
+
+Use it when:
+
+- You have expensive calculations (e.g., filtering, sorting, heavy loops).
+
+- You want to avoid recalculating values on every render.
+
+
+Returns:
+➡️ A memoized value (not a function).
 
 **useCallback:**
 
-- Memoizes a function
-- Prevents function recreation on every render
-- Returns the memoized function
-- Useful for optimizing child components that use the function as a prop
+- useCallback is a React Hook that memoizes (caches) a function so that it is not recreated on every render.
+
+Use it when:
+
+- You pass a function as a prop to child components that rely on referential equality (e.g., React.memo).
+
+- You want to prevent unnecessary re-renders caused by function recreation.
+
+
+Returns:
+➡️ A memoized function.
 
 **Example:**
 
