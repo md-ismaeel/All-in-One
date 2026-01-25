@@ -62,6 +62,30 @@
         <p class="content">Feel free to add more content here!</p>
     </div>
 
+    <div>
+        <!-- Block Elements -->
+        <div style="border: 1px solid black;">Block Element</div>
+        <p style="border: 1px solid black;">Paragraph - also block</p>
+
+        <!-- Inline Elements -->
+
+        <span style="border: 1px solid black;">Inline Element</span>
+        <strong style="border: 1px solid black;">Strong - also inline</strong>
+
+        <!-- They behave differently -->
+        <div style="background: lightblue;">
+            This is a block element that takes full width.
+        </div>
+        <div style="background: lightgreen;">
+            This div starts on a new line.
+        </div>
+
+        <span style="background: lightyellow;">Inline</span>
+        <span style="background: lightcoral;">stays on same line</span>
+    </div>
+
+    <div class="ismail">hey</div>
+
     <script>
         // document.getElementsByClassName('container').addEventListener('click', function (e) {
         //     if (e.target.classList.contains('title')) {
@@ -81,6 +105,21 @@
 
 
         });
+
+        const ismail = document.querySelector('.ismail')
+        const ele = document.createElement('div')
+        ele.style.width = '100px';
+        ele.style.height = '100px';
+        ele.style.backgroundColor = 'red';
+        ele.style.color = 'white';
+        ele.style.borderRadius = '50%';
+        ele.style.display = 'flex';
+        ele.style.justifyContent = 'center';
+        ele.style.alignItems = 'center';
+        ele.style.fontWeight = 'bold';
+        ele.textContent = 'Hello javascript';
+
+        ismail.appendChild(ele);
 
     </script>
 </body>

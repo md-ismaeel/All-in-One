@@ -162,3 +162,7 @@ function calculateDiscount(price, discountPercent) {
 const originalPrice = 100;
 console.log(calculateDiscount(originalPrice, 10)); // 90
 console.log(originalPrice); // 100 (unchanged)
+
+
+
+
