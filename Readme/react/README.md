@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # React Interview Questions & Answers
 
 Comprehensive guide to 50+ React interview questions organized by difficulty level with detailed explanations, code examples, and best practices.
