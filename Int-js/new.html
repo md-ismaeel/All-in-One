@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum reprehenderit delectus sed atque animi obcaecati ab facilis, ex sunt ut. Voluptas deleniti amet ad repudiandae neque alias quis harum consequuntur.</h1>
+
+    <script>
+        // function callbackFunction(name) {
+        //     console.log('Hello ' + name);
+        // }
+        // function outerFunction(callback) {
+        //     let name = prompt('Please enter your name.');
+        //     callback(name);
+        // }
+        // outerFunction(callbackFunction);
+
+
+        {
+            const url = `https://jsonplaceholder.typicode.com/todos`;
+            fetchData(url)
+        }
+
+
+        async function fetchData(url) {
+            const response = await fetch(url);
+            const data = await response.json()
+
+            console.log(data);
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

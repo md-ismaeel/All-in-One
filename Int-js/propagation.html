@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event Propagations</title>
+
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .main {
+            width: 400px;
+            height: 300px;
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .outer {
+            width: 300px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: blueviolet;
+        }
+
+        .inner {
+            width: 200px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: violet;
+        }
+
+        .box {
+            border: 1px solid red;
+            width: 150px;
+            height: 40px;
+            border-radius: 10px;
+            color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="outer">
+            <div class="inner">
+                <button class="box box1">box1</button>
+            </div>
+        </div>
+        <!-- <button class="box box2">box2</button>
+        <button class="box box3">box3</button>
+        <button class="box box4">box4</button> -->
+    </div>
+    <script>
+        let mainEl = document.querySelector(".main");
+        let outer = document.querySelector(".outer");
+        let inner = document.querySelector(".inner");
+        let box = document.querySelector(".box");
+        // let box2 = document.querySelector(".box2");
+        // let box3 = document.querySelector(".box3");
+        // let box4 = document.querySelector(".box4");
+
+        // let box = document.querySelectorAll(".box");
+        // box.forEach((item) => {
+        //     item.addEventListener("click", (e) => {
+        //         console.log("button clicked", e.target.textContent)
+        //     })
+        // })
+
+        mainEl.addEventListener("click", (e) => {
+            // console.log(e.target.classList);
+            console.log("clicked by =>", "main");
+        }, false)
+
+        outer.addEventListener("click", (e) => {
+            console.log("clicked by =>", "outer");
+        }, false)
+        inner.addEventListener("click", (e) => {
+            console.log("clicked by =>", "inner");
+        }, false)
+
+        box.addEventListener("click", (e) => {
+            console.log("clicked by =>", "box");
+        }, false)
+
+
+        console.log(window.location.href);
+
+        // box2.addEventListener("click", (e) => {
+        //     console.log("clicked by =>", e.target.textContent);
+        // })
+        // box3.addEventListener("click", (e) => {
+        //     console.log("clicked by =>", e.target.textContent);
+        // })
+        // box4.addEventListener("click", (e) => {
+        //     console.log("clicked by =>", e.target.textContent);
+        // })
+
+
+    </script>
+</body>
+
+</html>
